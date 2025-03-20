@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKBPRODUCTION - Optical Lenses</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://images.pexels.com/photos/586688/pexels-photo-586688.jpeg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: orange;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+            .btn:hover {
+                background: darkorange;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to GKBPRODUCTION</h1>
+        <p>High-Quality Optical Lenses for a Clearer Vision</p>
+        <a href="{% url 'login' %}" class="btn">Logout</a>
+        <a href="{% url 'search' %}" class="btn">Find My Rootcardno</a>
+    </div>
+</body>
+</html>

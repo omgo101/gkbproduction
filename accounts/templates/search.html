@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Rootcard number</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXN1OWliNXdsdHZmdm5haGppNGs4ZjR3djVsczVtcHc0c2s5MDNyMSZlcD12MV9pbnRlcm5naWZfYnlfaWQmY3Q9Zw/EAREoXJx2hrs3SAMD9/giphy.gif') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            background-size: cover;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+        margin: 0; /* python manage.py runserver 0.0.0.0:8000 #http://127.0.0.1:8000/ */
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: orange;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: darkorange;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color:white;
+            COLOR:black;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 05px;
+            text-align: left;
+            font-size: 0.8rem; /* Medium font size */
+        }
+
+        th {
+            background-color: darkorange;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .home-btn {
+            background: blue;
+            margin-bottom: 20px;
+        }
+
+        .home-btn:hover {
+            background: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="/home/" class="btn home-btn">Home</a> <!-- Home button added -->
+        <h1>Search for Your Rootcardno</h1>
+        <p>Enter your details to find your Rootcardno.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div style="margin: 0;" class="form-group">
+                <label for="rootcardno">Enter Rootcardno</label>
+                <input type="text" id="rootcardno" name="rootcardno" required>
+            </div>
+            <button type="submit" class="btn">Search</button>
+        </form>
+        {% if results %}
+        <div style="margin: 0;" class="results">
+            <h2 style="padding: 0.5px;">Results:</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            {% for column in column_names %}
+                            <th>{{ column }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in results %}
+                        <tr>
+                            {% for cell in row %}
+                            <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

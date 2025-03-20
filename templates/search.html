@@ -1,0 +1,43 @@
+<!-- ...existing code... -->
+<style>
+    table {
+        font-size: 12px; /* Adjust the font size as needed */
+    }
+    th, td {
+        padding: 4px; /* Adjust the padding as needed */
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="rootcardno" placeholder="Enter Root Card Number">
+    <button type="submit">Search</button>
+    <a href="{% url 'home' %}">
+        <button type="button">Go to Homepage</button>
+    </a>
+</form>
+
+{% if results %}
+    <table>
+        <thead>
+            <tr>
+                {% for column in column_names %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<!-- Add homepage button -->
+
+<!-- ...existing code... -->
