@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+import os
+
+# Initialize environment variables
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = ['*']
-
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -81,18 +86,9 @@ DATABASES = {
     }
 }
 DATABASES = {
-    'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'GKBPRODUCTION',      
-        'USER': 'sa',                
-        'PASSWORD': 'Sql123',         
-        'HOST': 'GKB',                
-        'PORT': '1433',               
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    }
+    'default': env.db('DATABASE_URL', default='mssql://sa:Sql123@GKB:1433/GKBPRODUCTION?driver=ODBC+Driver+17+for+SQL+Server')
 }
+
 
 ALLOWED_HOSTS = ['*']  # Allows all hosts (not recommended for production)
 
