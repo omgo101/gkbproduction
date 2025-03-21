@@ -3,11 +3,11 @@
 import os
 import sys
 
+# Correct version - keep only one DJANGO_SETTINGS_MODULE
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gkbproduction.settings')
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GKBPRODUCTION.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
